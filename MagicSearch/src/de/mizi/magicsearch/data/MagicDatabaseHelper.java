@@ -1,19 +1,24 @@
 package de.mizi.magicsearch.data;
 
+import java.sql.SQLException;
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
+import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
+import com.j256.ormlite.table.TableUtils;
 
 import de.mizi.magicsearch.R;
 
 public class MagicDatabaseHelper extends OrmLiteSqliteOpenHelper
 {
-	// name of the database file for your application -- change to something appropriate for your app
 	private static final String DATABASE_NAME = "magicsearch.db";
-	// any time you make changes to your database objects, you may have to increase the database version
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 2;
+	
+	private Dao<MagicCardData, Integer> magicDao = null;
 	
 	public MagicDatabaseHelper(Context context)
 	{
@@ -23,12 +28,44 @@ public class MagicDatabaseHelper extends OrmLiteSqliteOpenHelper
 	@Override
 	public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource)
 	{
-		
+		try {
+			TableUtils.createTable(connectionSource, MagicCardData.class);
+		} catch(SQLException e) {
+			Log.e(MagicDatabaseHelper.class.getName(), "Can't create database", e);
+			throw new RuntimeException(e);
+		}
 	}
 	
 	@Override
 	public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion)
 	{
-		
+		if(newVersion > oldVersion)
+		{
+			try {
+				TableUtils.dropTable(connectionSource, MagicCardData.class, true);
+				onCreate(database, connectionSource);
+			} catch(SQLException e) {
+				Log.e(MagicDatabaseHelper.class.getName(), "Can't drop database", e);
+				throw new RuntimeException(e);
+			}
+		}
+		else {
+			String message = "no upgrade needed (new version: " + newVersion + ", old version: " + oldVersion + ")";
+			Log.i(MagicDatabaseHelper.class.getName(), message);
+		}
+	}
+	
+	@Override
+	public void close() {
+		super.close();
+		magicDao = null;
+	}
+	
+	public Dao<MagicCardData, Integer> getMagicDao() throws SQLException
+	{
+		if(magicDao == null) {
+			magicDao = getDao(MagicCardData.class);
+		}
+		return magicDao;
 	}
 }

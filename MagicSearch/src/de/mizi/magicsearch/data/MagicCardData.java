@@ -7,31 +7,48 @@ import com.j256.ormlite.table.DatabaseTable;
 public class MagicCardData
 {
 	@DatabaseField(generatedId = true)
-	private long id;
+	public long id;
 	
 	@DatabaseField(canBeNull = false)
-	private String name;
+	public String name;
 	@DatabaseField
-	private String cost;
+	public String cost;
 	@DatabaseField
-	private int convertedCost;
+	public int convertedCost;
 	@DatabaseField
-	private String types;
+	public String types;
 	@DatabaseField
-	private String text;
+	public String rulesText;
 	@DatabaseField
-	private String power;
+	public String flavorText;
 	@DatabaseField
-	private String toughness;
+	public String artist;
+	@DatabaseField
+	public String power;
+	@DatabaseField
+	public String toughness;
 	@DatabaseField(canBeNull = false)
-	private String expansion;
+	public String expansion;
 	@DatabaseField
-	private MagicCardRarity rarity;
+	public MagicCardRarity rarity;
 	@DatabaseField
-	private String number;
+	public String number;
+	@DatabaseField
+	public String cardRules;
+	@DatabaseField
+	public String filename;
 	
 	public MagicCardData()
 	{
 		// needed for ORMLite
+	}
+	
+	@Override
+	public String toString()
+	{
+		return id + ";" + name + ";" + cost + ";" + convertedCost + ";"
+				+ types + ";" + rulesText + ";" + flavorText + ";" + artist + ";"
+				+ power + ";" + toughness + ";" + expansion + ";" + rarity + ";"
+				+ number + ";" + cardRules + ";" + filename;
 	}
 }
