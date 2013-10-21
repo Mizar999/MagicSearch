@@ -1,17 +1,348 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity" >
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TestTestTestTest"
-        android:id="@+id/debugout" />
-
-</RelativeLayout>
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    
+    <LinearLayout
+	    android:id="@+id/linearLayoutOutput"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical" >
+	    
+		<LinearLayout
+		    android:id="@+id/linearLayoutRow1"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" >
+		    
+		    <TextView
+		        android:id="@+id/cardIdHead"
+		        android:layout_width="0dp"
+		        android:layout_weight="0.7"
+		        android:layout_height="wrap_content"
+		        android:text="ID"
+		        android:layout_gravity="left"
+		        android:background="#88FF0000"/>
+		    <TextView
+		        android:id="@+id/cardIdOut"
+		        android:layout_width="0dp"
+		        android:layout_weight="1.3"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="right" 
+		        android:background="#8800FF00"/>
+		</LinearLayout>
+		
+		<LinearLayout
+		    android:id="@+id/linearLayoutRow2"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" >
+		    
+		    <TextView
+		        android:id="@+id/nameHead"
+		        android:layout_width="0dp"
+		        android:layout_weight="0.7"
+		        android:layout_height="wrap_content"
+		        android:text="Name"
+		        android:layout_gravity="left"
+		        android:background="#88FF0000"/>
+		    <TextView
+		        android:id="@+id/nameOut"
+		        android:layout_width="0dp"
+		        android:layout_weight="1.3"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="right" 
+		        android:background="#8800FF00"/>
+		
+		</LinearLayout>
+		
+		<LinearLayout
+		    android:id="@+id/linearLayoutRow3"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" >
+		    
+		    <TextView
+		        android:id="@+id/costHead"
+		        android:layout_width="0dp"
+		        android:layout_weight="0.7"
+		        android:layout_height="wrap_content"
+		        android:text="Manakosten"
+		        android:layout_gravity="left"
+		        android:background="#88FF0000"/>
+		    <TextView
+		        android:id="@+id/costOut"
+		        android:layout_width="0dp"
+		        android:layout_weight="1.3"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="right" 
+		        android:background="#8800FF00"/>
+		
+		</LinearLayout>
+		
+		<LinearLayout
+		    android:id="@+id/linearLayoutRow4"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" >
+		    
+		    <TextView
+		        android:id="@+id/convertedCostHead"
+		        android:layout_width="0dp"
+		        android:layout_weight="0.7"
+		        android:layout_height="wrap_content"
+		        android:text="Umgewandelte Manakosten"
+		        android:layout_gravity="left"
+		        android:background="#88FF0000"/>
+		    <TextView
+		        android:id="@+id/convertedCostOut"
+		        android:layout_width="0dp"
+		        android:layout_weight="1.3"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="right" 
+		        android:background="#8800FF00"/>
+		
+		</LinearLayout>
+		
+		<LinearLayout
+		    android:id="@+id/linearLayoutRow5"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" >
+		    
+		    <TextView
+		        android:id="@+id/typesHead"
+		        android:layout_width="0dp"
+		        android:layout_weight="0.7"
+		        android:layout_height="wrap_content"
+		        android:text="Typzeile"
+		        android:layout_gravity="left"
+		        android:background="#88FF0000"/>
+		    <TextView
+		        android:id="@+id/typesOut"
+		        android:layout_width="0dp"
+		        android:layout_weight="1.3"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="right" 
+		        android:background="#8800FF00"/>
+		
+		</LinearLayout>
+		
+		<LinearLayout
+		    android:id="@+id/linearLayoutRow6"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" >
+		    
+		    <TextView
+		        android:id="@+id/rulesHead"
+		        android:layout_width="0dp"
+		        android:layout_weight="0.7"
+		        android:layout_height="wrap_content"
+		        android:text="Regeltext"
+		        android:layout_gravity="left"
+		        android:background="#88FF0000"/>
+		    <TextView
+		        android:id="@+id/rulesOut"
+		        android:layout_width="0dp"
+		        android:layout_weight="1.3"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="right" 
+		        android:background="#8800FF00"/>
+		
+		</LinearLayout>
+		
+		<LinearLayout
+		    android:id="@+id/linearLayoutRow7"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" >
+		    
+		    <TextView
+		        android:id="@+id/flavorHead"
+		        android:layout_width="0dp"
+		        android:layout_weight="0.7"
+		        android:layout_height="wrap_content"
+		        android:text="Anekdotentext"
+		        android:layout_gravity="left"
+		        android:background="#88FF0000"/>
+		    <TextView
+		        android:id="@+id/flavorOut"
+		        android:layout_width="0dp"
+		        android:layout_weight="1.3"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="right" 
+		        android:background="#8800FF00"/>
+		
+		</LinearLayout>
+		
+		<LinearLayout
+		    android:id="@+id/linearLayoutRow8"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" >
+		    
+		    <TextView
+		        android:id="@+id/artistHead"
+		        android:layout_width="0dp"
+		        android:layout_weight="0.7"
+		        android:layout_height="wrap_content"
+		        android:text="Künstler"
+		        android:layout_gravity="left"
+		        android:background="#88FF0000"/>
+		    <TextView
+		        android:id="@+id/artistOut"
+		        android:layout_width="0dp"
+		        android:layout_weight="1.3"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="right" 
+		        android:background="#8800FF00"/>
+		
+		</LinearLayout>
+		
+		<LinearLayout
+		    android:id="@+id/linearLayoutRow9"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" >
+		    
+		    <TextView
+		        android:id="@+id/powerHead"
+		        android:layout_width="0dp"
+		        android:layout_weight="0.7"
+		        android:layout_height="wrap_content"
+		        android:text="Stärke"
+		        android:layout_gravity="left"
+		        android:background="#88FF0000"/>
+		    <TextView
+		        android:id="@+id/powerOut"
+		        android:layout_width="0dp"
+		        android:layout_weight="1.3"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="right" 
+		        android:background="#8800FF00"/>
+		
+		</LinearLayout>
+		
+		<LinearLayout
+		    android:id="@+id/linearLayoutRow10"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" >
+		    
+		    <TextView
+		        android:id="@+id/toughnessHead"
+		        android:layout_width="0dp"
+		        android:layout_weight="0.7"
+		        android:layout_height="wrap_content"
+		        android:text="Widerstandskraft"
+		        android:layout_gravity="left"
+		        android:background="#88FF0000"/>
+		    <TextView
+		        android:id="@+id/toughnessOut"
+		        android:layout_width="0dp"
+		        android:layout_weight="1.3"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="right" 
+		        android:background="#8800FF00"/>
+		
+		</LinearLayout>
+		
+		<LinearLayout
+		    android:id="@+id/linearLayoutRow11"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" >
+		    
+		    <TextView
+		        android:id="@+id/expansionHead"
+		        android:layout_width="0dp"
+		        android:layout_weight="0.7"
+		        android:layout_height="wrap_content"
+		        android:text="Erweiterung"
+		        android:layout_gravity="left"
+		        android:background="#88FF0000"/>
+		    <TextView
+		        android:id="@+id/expansionOut"
+		        android:layout_width="0dp"
+		        android:layout_weight="1.3"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="right" 
+		        android:background="#8800FF00"/>
+		
+		</LinearLayout>
+		
+		<LinearLayout
+		    android:id="@+id/linearLayoutRow12"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" >
+		    
+		    <TextView
+		        android:id="@+id/rarityHead"
+		        android:layout_width="0dp"
+		        android:layout_weight="0.7"
+		        android:layout_height="wrap_content"
+		        android:text="Seltenheit"
+		        android:layout_gravity="left"
+		        android:background="#88FF0000"/>
+		    <TextView
+		        android:id="@+id/rarityOut"
+		        android:layout_width="0dp"
+		        android:layout_weight="1.3"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="right" 
+		        android:background="#8800FF00"/>
+		
+		</LinearLayout>
+		
+		<LinearLayout
+		    android:id="@+id/linearLayoutRow13"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" >
+		    
+		    <TextView
+		        android:id="@+id/numberHead"
+		        android:layout_width="0dp"
+		        android:layout_weight="0.7"
+		        android:layout_height="wrap_content"
+		        android:text="Sammlernummer"
+		        android:layout_gravity="left"
+		        android:background="#88FF0000"/>
+		    <TextView
+		        android:id="@+id/numberOut"
+		        android:layout_width="0dp"
+		        android:layout_weight="1.3"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="right" 
+		        android:background="#8800FF00"/>
+		
+		</LinearLayout>
+		
+		<LinearLayout
+		    android:id="@+id/linearLayoutRow14"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" >
+		    
+		    <TextView
+		        android:id="@+id/cardRulesHead"
+		        android:layout_width="0dp"
+		        android:layout_weight="0.7"
+		        android:layout_height="wrap_content"
+		        android:text="Regeln FAQ"
+		        android:layout_gravity="left"
+		        android:background="#88FF0000"/>
+		    <TextView
+		        android:id="@+id/cardRulesOut"
+		        android:layout_width="0dp"
+		        android:layout_weight="1.3"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="right" 
+		        android:background="#8800FF00"/>
+		
+		</LinearLayout>
+	</LinearLayout>
+</ScrollView>
