@@ -90,7 +90,7 @@ public class MagicCardData implements Parcelable
 		dest.writeString(power);
 		dest.writeString(toughness);
 		dest.writeString(expansion);
-		dest.writeInt(rarity.ordinal());
+		dest.writeInt(rarity == null ? null : rarity.ordinal());
 		dest.writeString(number);
 		dest.writeString(cardRules);
 		dest.writeString(filename);
