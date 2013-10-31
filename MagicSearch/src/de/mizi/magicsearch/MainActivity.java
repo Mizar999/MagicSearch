@@ -57,6 +57,6 @@ public class MainActivity extends OrmLiteBaseActivity<MagicDatabaseHelper>
 	{
 		ProgressDialog progress = ProgressDialog.show(this, "Status", "collecting data ...");
 		MagicWebscrapingAsyncTask scraping = new MagicWebscrapingAsyncTask(getHelper(), progress);
-		scraping.execute("dgm");
+		scraping.execute("ths", "dgm");
 	}
 }

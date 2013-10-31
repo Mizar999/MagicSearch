@@ -21,4 +21,17 @@ public enum MagicCardRarity
 	{
 		return name;
 	}
+	
+	public static MagicCardRarity stringToRarity(String rarity)
+	{
+		for(MagicCardRarity element: values())
+		{
+			if(element.toString().equals(rarity))
+			{
+				return element;
+			}
+		}
+		
+		return NONE;
+	}
 }

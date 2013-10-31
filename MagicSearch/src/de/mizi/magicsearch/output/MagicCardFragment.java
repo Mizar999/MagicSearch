@@ -29,8 +29,9 @@ public class MagicCardFragment extends Fragment
 		((TextView) rootView.findViewById(R.id.artistOut)).setText(data.artist);
 		((TextView) rootView.findViewById(R.id.powerOut)).setText(data.power);
 		((TextView) rootView.findViewById(R.id.toughnessOut)).setText(data.toughness);
+		((TextView) rootView.findViewById(R.id.loyaltyOut)).setText(data.loyalty);
 		((TextView) rootView.findViewById(R.id.expansionOut)).setText(data.expansion);
-		((TextView) rootView.findViewById(R.id.rarityOut)).setText(data.rarity == null ? null : data.rarity.toString());
+		((TextView) rootView.findViewById(R.id.rarityOut)).setText(data.rarity.toString());
 		((TextView) rootView.findViewById(R.id.numberOut)).setText(data.number);
 		((TextView) rootView.findViewById(R.id.cardRulesOut)).setText(data.cardRules);
 		return rootView;

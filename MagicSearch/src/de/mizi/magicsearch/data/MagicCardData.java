@@ -17,7 +17,7 @@ public class MagicCardData implements Parcelable
 	@DatabaseField
 	public String cost;
 	@DatabaseField
-	public int convertedCost;
+	public String convertedCost;
 	@DatabaseField
 	public String types;
 	@DatabaseField
@@ -30,6 +30,8 @@ public class MagicCardData implements Parcelable
 	public String power;
 	@DatabaseField
 	public String toughness;
+	@DatabaseField
+	public String loyalty;
 	@DatabaseField(canBeNull = false)
 	public String expansion;
 	@DatabaseField
@@ -51,8 +53,8 @@ public class MagicCardData implements Parcelable
 	{
 		return id + ";" + name + ";" + cost + ";" + convertedCost + ";"
 				+ types + ";" + rulesText + ";" + flavorText + ";" + artist + ";"
-				+ power + ";" + toughness + ";" + expansion + ";" + rarity + ";"
-				+ number + ";" + cardRules + ";" + filename;
+				+ power + ";" + toughness + ";" + loyalty + ";" + expansion + ";"
+				+ rarity + ";"+ number + ";" + cardRules + ";" + filename;
 	}
 	
 	// Code for Parcelable interface
@@ -82,13 +84,14 @@ public class MagicCardData implements Parcelable
 		dest.writeLong(id);
 		dest.writeString(name);
 		dest.writeString(cost);
-		dest.writeInt(convertedCost);
+		dest.writeString(convertedCost);
 		dest.writeString(types);
 		dest.writeString(rulesText);
 		dest.writeString(flavorText);
 		dest.writeString(artist);
 		dest.writeString(power);
 		dest.writeString(toughness);
+		dest.writeString(loyalty);
 		dest.writeString(expansion);
 		dest.writeInt(rarity == null ? null : rarity.ordinal());
 		dest.writeString(number);
@@ -102,13 +105,14 @@ public class MagicCardData implements Parcelable
 		id = source.readLong();
 		name = source.readString();
 		cost= source.readString();
-		convertedCost = source.readInt();
+		convertedCost = source.readString();
 		types = source.readString();
 		rulesText = source.readString();
 		flavorText = source.readString();
 		artist = source.readString();
 		power = source.readString();
 		toughness = source.readString();
+		loyalty = source.readString();
 		expansion = source.readString();
 		rarity = MagicCardRarity.values()[source.readInt()];
 		number = source.readString();
