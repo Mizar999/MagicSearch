@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class MagicCardFragment extends Fragment
@@ -34,6 +36,14 @@ public class MagicCardFragment extends Fragment
 		((TextView) rootView.findViewById(R.id.rarityOut)).setText(data.rarity.toString());
 		((TextView) rootView.findViewById(R.id.numberOut)).setText(data.number);
 		((TextView) rootView.findViewById(R.id.cardRulesOut)).setText(data.cardRules);
+		
+		ImageView image = (ImageView) rootView.findViewById(R.id.cardImage);
+		ProgressBar progress = (ProgressBar) rootView.findViewById(R.id.cardImageProgress);
+		TextView text = (TextView) rootView.findViewById(R.id.cardImageMessage);
+		
+		MagicCardImageAsyncTask task = new MagicCardImageAsyncTask(image, progress, text);
+		task.execute(data.imageUrl);
+		
 		return rootView;
 	}
 }

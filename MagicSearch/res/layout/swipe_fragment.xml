@@ -11,7 +11,7 @@
 	    android:orientation="vertical" >
 	    
 		<LinearLayout
-		    android:id="@+id/linearLayoutRow1"
+		    android:id="@+id/linearLayoutCardId"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    android:orientation="horizontal" >
@@ -34,7 +34,7 @@
 		</LinearLayout>
 		
 		<LinearLayout
-		    android:id="@+id/linearLayoutRow2"
+		    android:id="@+id/linearLayoutName"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    android:orientation="horizontal" >
@@ -57,8 +57,38 @@
 		
 		</LinearLayout>
 		
+		<RelativeLayout
+		    android:id="@+id/relativeLayoutImage"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content" >
+		
+		    <ImageView
+		        android:id="@+id/cardImage"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_centerInParent="true"
+		        android:contentDescription="Card image" />
+		
+		    <ProgressBar
+		        android:id="@+id/cardImageProgress"
+		        style="?android:attr/progressBarStyleLarge"
+		        android:layout_width="wrap_content"
+		        android:layout_centerInParent="true"
+		        android:layout_height="wrap_content" />
+		
+		    <TextView
+		        android:id="@+id/cardImageMessage"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignBottom="@+id/cardImage"
+		        android:layout_centerHorizontal="true"
+		        android:visibility="gone"
+		        android:text="Image could't be loaded" />
+		
+		</RelativeLayout>
+		
 		<LinearLayout
-		    android:id="@+id/linearLayoutRow3"
+		    android:id="@+id/linearLayoutCost"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    android:orientation="horizontal" >
@@ -82,7 +112,7 @@
 		</LinearLayout>
 		
 		<LinearLayout
-		    android:id="@+id/linearLayoutRow4"
+		    android:id="@+id/linearLayoutConvertedCost"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    android:orientation="horizontal" >
@@ -106,7 +136,7 @@
 		</LinearLayout>
 		
 		<LinearLayout
-		    android:id="@+id/linearLayoutRow5"
+		    android:id="@+id/linearLayoutTypes"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    android:orientation="horizontal" >
@@ -130,7 +160,7 @@
 		</LinearLayout>
 		
 		<LinearLayout
-		    android:id="@+id/linearLayoutRow6"
+		    android:id="@+id/linearLayoutRules"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    android:orientation="horizontal" >
@@ -154,7 +184,7 @@
 		</LinearLayout>
 		
 		<LinearLayout
-		    android:id="@+id/linearLayoutRow7"
+		    android:id="@+id/linearLayoutFlavor"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    android:orientation="horizontal" >
@@ -178,7 +208,7 @@
 		</LinearLayout>
 		
 		<LinearLayout
-		    android:id="@+id/linearLayoutRow8"
+		    android:id="@+id/linearLayoutRowArtist"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    android:orientation="horizontal" >
@@ -202,7 +232,7 @@
 		</LinearLayout>
 		
 		<LinearLayout
-		    android:id="@+id/linearLayoutRow9"
+		    android:id="@+id/linearLayoutRowPower"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    android:orientation="horizontal" >
@@ -226,7 +256,7 @@
 		</LinearLayout>
 		
 		<LinearLayout
-		    android:id="@+id/linearLayoutRow10"
+		    android:id="@+id/linearLayoutRowToughness"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    android:orientation="horizontal" >
@@ -250,7 +280,7 @@
 		</LinearLayout>
 		
 		<LinearLayout
-		    android:id="@+id/linearLayoutRow11"
+		    android:id="@+id/linearLayoutRowLoyalty"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    android:orientation="horizontal" >
@@ -274,7 +304,7 @@
 		</LinearLayout>
 		
 		<LinearLayout
-		    android:id="@+id/linearLayoutRow12"
+		    android:id="@+id/linearLayoutExpansion"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    android:orientation="horizontal" >
@@ -298,7 +328,7 @@
 		</LinearLayout>
 		
 		<LinearLayout
-		    android:id="@+id/linearLayoutRow13"
+		    android:id="@+id/linearLayoutRarity"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    android:orientation="horizontal" >
@@ -322,7 +352,7 @@
 		</LinearLayout>
 		
 		<LinearLayout
-		    android:id="@+id/linearLayoutRow14"
+		    android:id="@+id/linearLayoutNumber"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    android:orientation="horizontal" >
@@ -346,7 +376,7 @@
 		</LinearLayout>
 		
 		<LinearLayout
-		    android:id="@+id/linearLayoutRow15"
+		    android:id="@+id/linearLayoutCardRules"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    android:orientation="horizontal" >

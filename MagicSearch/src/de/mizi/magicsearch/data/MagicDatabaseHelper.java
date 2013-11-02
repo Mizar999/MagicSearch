@@ -16,7 +16,7 @@ import de.mizi.magicsearch.R;
 public class MagicDatabaseHelper extends OrmLiteSqliteOpenHelper
 {
 	private static final String DATABASE_NAME = "magicsearch.db";
-	private static final int DATABASE_VERSION = 3;
+	private static final int DATABASE_VERSION = 4;
 	
 	private Dao<MagicCardData, Integer> magicDao = null;
 	

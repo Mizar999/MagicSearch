@@ -69,6 +69,7 @@ public class MagicWebscrapingAsyncTask extends AsyncTask<String, String, Boolean
 					}
 					Element collectorNumber = doc.select("body > table").get(2).select("tr:eq(0) td:eq(2) b:matchesOwn(#)").first();
 					Element edition = doc.select("body > table").get(2).select("tr:eq(0) td:eq(2) img + b").first();
+					Element imageUrl = doc.select("body > table").get(2).select("tr:eq(0) td:eq(0) img").first();
 	
 					MagicCardData data = new MagicCardData();
 					data.name = name.text();
@@ -76,6 +77,7 @@ public class MagicWebscrapingAsyncTask extends AsyncTask<String, String, Boolean
 					data.flavorText = flavor.text();
 					data.artist = artist.text().replaceFirst("Illus. ", "");
 					data.cardRules = (cardrules == null ? "-" : cardrules.text());
+					data.imageUrl = (imageUrl == null ? "" : imageUrl.attr("src"));
 					data.types = "-";
 					data.power = "-";
 					data.toughness = "-";

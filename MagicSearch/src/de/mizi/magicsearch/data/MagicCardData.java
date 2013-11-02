@@ -41,7 +41,7 @@ public class MagicCardData implements Parcelable
 	@DatabaseField
 	public String cardRules;
 	@DatabaseField
-	public String filename;
+	public String imageUrl;
 	
 	public MagicCardData()
 	{
@@ -54,7 +54,7 @@ public class MagicCardData implements Parcelable
 		return id + ";" + name + ";" + cost + ";" + convertedCost + ";"
 				+ types + ";" + rulesText + ";" + flavorText + ";" + artist + ";"
 				+ power + ";" + toughness + ";" + loyalty + ";" + expansion + ";"
-				+ rarity + ";"+ number + ";" + cardRules + ";" + filename;
+				+ rarity + ";"+ number + ";" + cardRules + ";" + imageUrl;
 	}
 	
 	// Code for Parcelable interface
@@ -96,7 +96,7 @@ public class MagicCardData implements Parcelable
 		dest.writeInt(rarity == null ? null : rarity.ordinal());
 		dest.writeString(number);
 		dest.writeString(cardRules);
-		dest.writeString(filename);
+		dest.writeString(imageUrl);
 	}
 	
 	// Constructor from parcel reads back fields in the order they were written
@@ -117,6 +117,6 @@ public class MagicCardData implements Parcelable
 		rarity = MagicCardRarity.values()[source.readInt()];
 		number = source.readString();
 		cardRules = source.readString();
-		filename = source.readString();
+		imageUrl = source.readString();
 	}
 }

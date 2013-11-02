@@ -36,7 +36,7 @@ public class FragmentMainActivity extends FragmentActivity
 		}
 		
 		adapter = new MagicCardPagerAdapter(getSupportFragmentManager(), data);
-		pager = (ViewPager) findViewById(R.id.pager);
+		pager = (ViewPager)findViewById(R.id.pager);
 		pager.setAdapter(adapter);
 		// ViewPager and its adapters use support library
 		// fragments, so use getSupportFragmentManager.
