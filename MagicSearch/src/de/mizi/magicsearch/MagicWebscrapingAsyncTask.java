@@ -129,7 +129,7 @@ public class MagicWebscrapingAsyncTask extends AsyncTask<String, String, Boolean
 					}
 					
 					publishProgress(nextExpansion + " (" + ++cardCounter + ")");
-				}while(nextCard != null && cardCounter < 5);
+				}while(nextCard != null);
 			}
 		}
 		catch(SQLException e) {

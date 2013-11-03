@@ -9,10 +9,12 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "magiccard")
 public class MagicCardData implements Parcelable
 {
+	public static final String CARDNAME_FIELD_NAME = "cardname";
+	
 	@DatabaseField(generatedId = true)
 	public long id;
 	
-	@DatabaseField(canBeNull = false)
+	@DatabaseField(canBeNull = false, columnName = CARDNAME_FIELD_NAME)
 	public String name;
 	@DatabaseField
 	public String cost;
@@ -62,7 +64,7 @@ public class MagicCardData implements Parcelable
 	{
 		@Override
 		public MagicCardData createFromParcel(Parcel source) {
-			return null;
+			return new MagicCardData(source);
 		}
 		
 		@Override

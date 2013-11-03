@@ -26,6 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".output.FragmentMainActivity"></activity>
+        <activity android:name="SearchResultListActivity"></activity>
     </application>
 	
 </manifest>

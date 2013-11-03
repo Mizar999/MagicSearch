@@ -21,13 +21,13 @@
     <string name="data_cardrules">Rules FAQ</string>
     <string name="data_cardimage_desc">Cardimage</string>
     <string name="data_cardimage_error">Cardimage could not be loaded</string>
-    <string name="main_text">Use the menu button ...</string>
     <string name="webscraping_status">Status</string>
-    <string name="webscraping_message">collecting data ...</string>
+    <string name="webscraping_message">collecting data</string>
     <string name="webscraping_progress">Status:</string><string name="webscraping_initialize">Initialize</string><string name="main_button_search">Search</string>
     <string name="main_button_showall">Show all</string>
     <string name="main_button_webscraping">Collect data</string>
     <string name="main_edit_hint">Cardname</string>
+    <string name="no_search_result">There were no cards found.</string>
     
     
 

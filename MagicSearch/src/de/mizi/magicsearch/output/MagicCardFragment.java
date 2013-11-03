@@ -13,12 +13,12 @@ import android.widget.TextView;
 
 public class MagicCardFragment extends Fragment
 {
-	public static final String KEY_DATA = "data";
+	public static final String KEY_DATA = "carddata";
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		Bundle args = getArguments();
-		MagicCardData data = (MagicCardData)args.getParcelable(KEY_DATA);
+		MagicCardData data = (MagicCardData)args.getParcelable(MagicCardFragment.KEY_DATA);
 		
 		View rootView = inflater.inflate(R.layout.swipe_fragment, container, false);
 		((TextView) rootView.findViewById(R.id.cardIdOut)).setText("" + data.id);

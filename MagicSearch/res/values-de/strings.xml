@@ -21,13 +21,13 @@
     <string name="data_cardrules">Regeln FAQ</string>
     <string name="data_cardimage_desc">Kartenbild</string>
     <string name="data_cardimage_error">Kartenbild konnte nicht geladen werden</string>
-    <string name="main_text">Benutze die Menütaste</string>
     <string name="webscraping_status">Status</string>
-    <string name="webscraping_message">Sammle Daten ...</string>
+    <string name="webscraping_message">Sammle Daten</string>
     <string name="webscraping_progress">Status:</string><string name="webscraping_initialize">Initialisiere</string><string name="main_button_search">Suchen</string>
     <string name="main_button_showall">Alles anzeigen</string>
     <string name="main_button_webscraping">Sammle Daten</string>
     <string name="main_edit_hint">Kartenname</string>
+    <string name="no_search_result">Es wurden keine Karten gefunden.</string>
     
     
 
