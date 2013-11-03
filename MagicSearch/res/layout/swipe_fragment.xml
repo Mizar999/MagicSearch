@@ -21,11 +21,12 @@
 		        android:layout_width="0dp"
 		        android:layout_weight="0.7"
 		        android:layout_height="wrap_content"
-		        android:text="ID"
+		        android:text="@string/data_id"
 		        android:layout_gravity="left"
 		        android:background="#88FF0000"/>
 		    <TextView
 		        android:id="@+id/cardIdOut"
+		        android:textIsSelectable="false"
 		        android:layout_width="0dp"
 		        android:layout_weight="1.3"
 		        android:layout_height="wrap_content"
@@ -44,11 +45,12 @@
 		        android:layout_width="0dp"
 		        android:layout_weight="0.7"
 		        android:layout_height="wrap_content"
-		        android:text="Name"
+		        android:text="@string/data_name"
 		        android:layout_gravity="left"
 		        android:background="#88FF0000"/>
 		    <TextView
 		        android:id="@+id/nameOut"
+		        android:textIsSelectable="false"
 		        android:layout_width="0dp"
 		        android:layout_weight="1.3"
 		        android:layout_height="wrap_content"
@@ -67,7 +69,7 @@
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_centerInParent="true"
-		        android:contentDescription="Card image" />
+		        android:contentDescription="@string/data_cardimage_desc" />
 		
 		    <ProgressBar
 		        android:id="@+id/cardImageProgress"
@@ -83,7 +85,7 @@
 		        android:layout_alignBottom="@+id/cardImage"
 		        android:layout_centerHorizontal="true"
 		        android:visibility="gone"
-		        android:text="Image could't be loaded" />
+		        android:text="@string/data_cardimage_error" />
 		
 		</RelativeLayout>
 		
@@ -98,11 +100,12 @@
 		        android:layout_width="0dp"
 		        android:layout_weight="0.7"
 		        android:layout_height="wrap_content"
-		        android:text="Manakosten"
+		        android:text="@string/data_cost"
 		        android:layout_gravity="left"
 		        android:background="#88FF0000"/>
 		    <TextView
 		        android:id="@+id/costOut"
+		        android:textIsSelectable="false"
 		        android:layout_width="0dp"
 		        android:layout_weight="1.3"
 		        android:layout_height="wrap_content"
@@ -122,11 +125,12 @@
 		        android:layout_width="0dp"
 		        android:layout_weight="0.7"
 		        android:layout_height="wrap_content"
-		        android:text="Umgewandelte Manakosten"
+		        android:text="@string/data_convertedcost"
 		        android:layout_gravity="left"
 		        android:background="#88FF0000"/>
 		    <TextView
 		        android:id="@+id/convertedCostOut"
+		        android:textIsSelectable="false"
 		        android:layout_width="0dp"
 		        android:layout_weight="1.3"
 		        android:layout_height="wrap_content"
@@ -146,11 +150,12 @@
 		        android:layout_width="0dp"
 		        android:layout_weight="0.7"
 		        android:layout_height="wrap_content"
-		        android:text="Typzeile"
+		        android:text="@string/data_types"
 		        android:layout_gravity="left"
 		        android:background="#88FF0000"/>
 		    <TextView
 		        android:id="@+id/typesOut"
+		        android:textIsSelectable="false"
 		        android:layout_width="0dp"
 		        android:layout_weight="1.3"
 		        android:layout_height="wrap_content"
@@ -170,11 +175,12 @@
 		        android:layout_width="0dp"
 		        android:layout_weight="0.7"
 		        android:layout_height="wrap_content"
-		        android:text="Regeltext"
+		        android:text="@string/data_rules"
 		        android:layout_gravity="left"
 		        android:background="#88FF0000"/>
 		    <TextView
 		        android:id="@+id/rulesOut"
+		        android:textIsSelectable="false"
 		        android:layout_width="0dp"
 		        android:layout_weight="1.3"
 		        android:layout_height="wrap_content"
@@ -194,11 +200,12 @@
 		        android:layout_width="0dp"
 		        android:layout_weight="0.7"
 		        android:layout_height="wrap_content"
-		        android:text="Anekdotentext"
+		        android:text="@string/data_flavor"
 		        android:layout_gravity="left"
 		        android:background="#88FF0000"/>
 		    <TextView
 		        android:id="@+id/flavorOut"
+		        android:textIsSelectable="false"
 		        android:layout_width="0dp"
 		        android:layout_weight="1.3"
 		        android:layout_height="wrap_content"
@@ -218,11 +225,12 @@
 		        android:layout_width="0dp"
 		        android:layout_weight="0.7"
 		        android:layout_height="wrap_content"
-		        android:text="Künstler"
+		        android:text="@string/data_artist"
 		        android:layout_gravity="left"
 		        android:background="#88FF0000"/>
 		    <TextView
 		        android:id="@+id/artistOut"
+		        android:textIsSelectable="false"
 		        android:layout_width="0dp"
 		        android:layout_weight="1.3"
 		        android:layout_height="wrap_content"
@@ -242,11 +250,12 @@
 		        android:layout_width="0dp"
 		        android:layout_weight="0.7"
 		        android:layout_height="wrap_content"
-		        android:text="Stärke"
+		        android:text="@string/data_power"
 		        android:layout_gravity="left"
 		        android:background="#88FF0000"/>
 		    <TextView
 		        android:id="@+id/powerOut"
+		        android:textIsSelectable="false"
 		        android:layout_width="0dp"
 		        android:layout_weight="1.3"
 		        android:layout_height="wrap_content"
@@ -266,11 +275,12 @@
 		        android:layout_width="0dp"
 		        android:layout_weight="0.7"
 		        android:layout_height="wrap_content"
-		        android:text="Widerstandskraft"
+		        android:text="@string/data_toughness"
 		        android:layout_gravity="left"
 		        android:background="#88FF0000"/>
 		    <TextView
 		        android:id="@+id/toughnessOut"
+		        android:textIsSelectable="false"
 		        android:layout_width="0dp"
 		        android:layout_weight="1.3"
 		        android:layout_height="wrap_content"
@@ -290,11 +300,12 @@
 		        android:layout_width="0dp"
 		        android:layout_weight="0.7"
 		        android:layout_height="wrap_content"
-		        android:text="Loyalität"
+		        android:text="@string/data_loyalty"
 		        android:layout_gravity="left"
 		        android:background="#88FF0000"/>
 		    <TextView
 		        android:id="@+id/loyaltyOut"
+		        android:textIsSelectable="false"
 		        android:layout_width="0dp"
 		        android:layout_weight="1.3"
 		        android:layout_height="wrap_content"
@@ -314,11 +325,12 @@
 		        android:layout_width="0dp"
 		        android:layout_weight="0.7"
 		        android:layout_height="wrap_content"
-		        android:text="Erweiterung"
+		        android:text="@string/data_expansion"
 		        android:layout_gravity="left"
 		        android:background="#88FF0000"/>
 		    <TextView
 		        android:id="@+id/expansionOut"
+		        android:textIsSelectable="false"
 		        android:layout_width="0dp"
 		        android:layout_weight="1.3"
 		        android:layout_height="wrap_content"
@@ -338,11 +350,12 @@
 		        android:layout_width="0dp"
 		        android:layout_weight="0.7"
 		        android:layout_height="wrap_content"
-		        android:text="Seltenheit"
+		        android:text="@string/data_rarity"
 		        android:layout_gravity="left"
 		        android:background="#88FF0000"/>
 		    <TextView
 		        android:id="@+id/rarityOut"
+		        android:textIsSelectable="false"
 		        android:layout_width="0dp"
 		        android:layout_weight="1.3"
 		        android:layout_height="wrap_content"
@@ -362,11 +375,12 @@
 		        android:layout_width="0dp"
 		        android:layout_weight="0.7"
 		        android:layout_height="wrap_content"
-		        android:text="Sammlernummer"
+		        android:text="@string/data_collectorsnumber"
 		        android:layout_gravity="left"
 		        android:background="#88FF0000"/>
 		    <TextView
 		        android:id="@+id/numberOut"
+		        android:textIsSelectable="false"
 		        android:layout_width="0dp"
 		        android:layout_weight="1.3"
 		        android:layout_height="wrap_content"
@@ -386,11 +400,12 @@
 		        android:layout_width="0dp"
 		        android:layout_weight="0.7"
 		        android:layout_height="wrap_content"
-		        android:text="Regeln FAQ"
+		        android:text="@string/data_cardrules"
 		        android:layout_gravity="left"
 		        android:background="#88FF0000"/>
 		    <TextView
 		        android:id="@+id/cardRulesOut"
+		        android:textIsSelectable="false"
 		        android:layout_width="0dp"
 		        android:layout_weight="1.3"
 		        android:layout_height="wrap_content"

@@ -46,7 +46,7 @@ public class MagicCardImageAsyncTask extends AsyncTask<String, String, Boolean>
 			}
 			catch (IOException e) {
 				e.printStackTrace();
-			}     
+			}    
 		}
 		
 		return success;

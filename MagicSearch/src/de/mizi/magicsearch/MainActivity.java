@@ -9,10 +9,11 @@ import de.mizi.magicsearch.output.FragmentMainActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.TextView;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 public class MainActivity extends OrmLiteBaseActivity<MagicDatabaseHelper>
 {
@@ -21,41 +22,39 @@ public class MainActivity extends OrmLiteBaseActivity<MagicDatabaseHelper>
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-//		setContentView(R.layout.activity_main);
-		TextView view = new TextView(this);
-		view.setText("use the menu button ...");
-		setContentView(view);
+		setContentView(R.layout.activity_main);
+		
+		Button showall = (Button)findViewById(R.id.main_button_showall);
+		showall.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v)
+			{
+				Intent intent = new Intent(MainActivity.this, FragmentMainActivity.class);
+	            startActivity(intent);
+			}
+		});
+		
+		Button webscraping = (Button)findViewById(R.id.main_button_webscraping);
+		webscraping.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v)
+			{
+				try {
+					MainActivity.this.startWebscraping();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-        case R.id.menuWebscrapping:
-            try {
-				startWebscraping();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-            return true;
-        case R.id.menuShowdata:
-            Intent intent = new Intent(this, FragmentMainActivity.class);
-            startActivity(intent);
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
-		}
-	}
-	
 	private void startWebscraping() throws SQLException
 	{
-		ProgressDialog progress = ProgressDialog.show(this, "Status", "collecting data ...");
+		Resources res = getResources();
+		String status = res.getString(R.string.webscraping_status);
+		String message = res.getString(R.string.webscraping_message);
+		
+		ProgressDialog progress = ProgressDialog.show(this, status, message);
 		MagicWebscrapingAsyncTask scraping = new MagicWebscrapingAsyncTask(getHelper(), progress);
 		scraping.execute("ths", "dgm");
 	}

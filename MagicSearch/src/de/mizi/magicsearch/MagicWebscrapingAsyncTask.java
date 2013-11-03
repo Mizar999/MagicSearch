@@ -17,6 +17,7 @@ import de.mizi.magicsearch.data.MagicCardRarity;
 import de.mizi.magicsearch.data.MagicDatabaseHelper;
 
 import android.app.ProgressDialog;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 
 public class MagicWebscrapingAsyncTask extends AsyncTask<String, String, Boolean>
@@ -28,12 +29,14 @@ public class MagicWebscrapingAsyncTask extends AsyncTask<String, String, Boolean
 	private MagicDatabaseHelper helper;
 	private Dao<MagicCardData, Integer> dao;
 	private ProgressDialog progress;
+	private Resources resources;
 	
 	public MagicWebscrapingAsyncTask(MagicDatabaseHelper helper, ProgressDialog progress) throws SQLException
 	{
 		this.helper = helper;
 		this.dao = helper.getMagicDao();
 		this.progress = progress;
+		this.resources = progress.getContext().getResources();
 	}
 	
 	@Override
@@ -41,7 +44,7 @@ public class MagicWebscrapingAsyncTask extends AsyncTask<String, String, Boolean
 	{
 		try
 		{
-			publishProgress("initialize");
+			publishProgress(resources.getString(R.string.webscraping_initialize));
 			TableUtils.clearTable(helper.getConnectionSource(), MagicCardData.class);
 			
 			Document doc = null;
@@ -145,6 +148,6 @@ public class MagicWebscrapingAsyncTask extends AsyncTask<String, String, Boolean
 	@Override
 	protected void onProgressUpdate(String... values)
 	{
-		progress.setTitle("Status: " + values[0]);
+		progress.setTitle(resources.getString(R.string.webscraping_progress) + " " + values[0]);
 	}
 }

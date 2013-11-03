@@ -4,5 +4,31 @@
     <string name="app_name">MagicSearch</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="data_id">ID</string>
+    <string name="data_name">Name</string>
+    <string name="data_cost">Manacost</string>
+    <string name="data_convertedcost">Converted Manacost</string>
+    <string name="data_types">Type</string>
+    <string name="data_rules">Rulestext</string>
+    <string name="data_flavor">Flavortext</string>
+    <string name="data_artist">Artist</string>
+    <string name="data_power">Power</string>
+    <string name="data_toughness">Toughness</string>
+    <string name="data_loyalty">Loyalty</string>
+    <string name="data_expansion">Expansion</string>
+    <string name="data_rarity">Rarity</string>
+    <string name="data_collectorsnumber">Collectorsnumber</string>
+    <string name="data_cardrules">Rules FAQ</string>
+    <string name="data_cardimage_desc">Cardimage</string>
+    <string name="data_cardimage_error">Cardimage could not be loaded</string>
+    <string name="main_text">Use the menu button ...</string>
+    <string name="webscraping_status">Status</string>
+    <string name="webscraping_message">collecting data ...</string>
+    <string name="webscraping_progress">Status:</string><string name="webscraping_initialize">Initialize</string><string name="main_button_search">Search</string>
+    <string name="main_button_showall">Show all</string>
+    <string name="main_button_webscraping">Collect data</string>
+    <string name="main_edit_hint">Cardname</string>
+    
+    
 
 </resources>
