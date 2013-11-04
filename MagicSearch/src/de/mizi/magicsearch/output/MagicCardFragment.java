@@ -14,11 +14,13 @@ import android.widget.TextView;
 public class MagicCardFragment extends Fragment
 {
 	public static final String KEY_DATA = "carddata";
+	public static final String KEY_PAGENUMBER = "pagenumber";
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		Bundle args = getArguments();
 		MagicCardData data = (MagicCardData)args.getParcelable(MagicCardFragment.KEY_DATA);
+		String pagenumber = args.getString(MagicCardFragment.KEY_PAGENUMBER);
 		
 		View rootView = inflater.inflate(R.layout.swipe_fragment, container, false);
 		((TextView) rootView.findViewById(R.id.cardIdOut)).setText("" + data.id);
@@ -36,6 +38,8 @@ public class MagicCardFragment extends Fragment
 		((TextView) rootView.findViewById(R.id.rarityOut)).setText(data.rarity.toString());
 		((TextView) rootView.findViewById(R.id.numberOut)).setText(data.number);
 		((TextView) rootView.findViewById(R.id.cardRulesOut)).setText(data.cardRules);
+		
+		((TextView) rootView.findViewById(R.id.pagenumber)).setText(pagenumber);
 		
 		ImageView image = (ImageView) rootView.findViewById(R.id.cardImage);
 		ProgressBar progress = (ProgressBar) rootView.findViewById(R.id.cardImageProgress);

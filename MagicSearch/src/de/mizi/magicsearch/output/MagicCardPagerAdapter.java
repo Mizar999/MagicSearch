@@ -25,6 +25,7 @@ public class MagicCardPagerAdapter extends FragmentStatePagerAdapter
 		Fragment fragment = new MagicCardFragment();
 		Bundle args = new Bundle();
 		args.putParcelable(MagicCardFragment.KEY_DATA, data.get(listIndex));
+		args.putString(MagicCardFragment.KEY_PAGENUMBER, String.format("%s / %s", listIndex + 1, data.size()));
 		fragment.setArguments(args);
 		return fragment;
 	}

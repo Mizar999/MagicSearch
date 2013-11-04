@@ -1,417 +1,432 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
+    android:layout_height="fill_parent" >
     
-    <LinearLayout
-	    android:id="@+id/linearLayoutOutput"
+    <TextView
+        android:id="@+id/pagenumber"
+        android:textIsSelectable="false"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+    
+    <ScrollView 
 	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:orientation="vertical" >
+	    android:layout_height="fill_parent"
+	    android:layout_above="@id/pagenumber" >
 	    
-		<LinearLayout
-		    android:id="@+id/linearLayoutCardId"
+	    <LinearLayout
+		    android:id="@+id/linearLayoutOutput"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
-		    android:orientation="horizontal" >
+		    android:orientation="vertical" >
 		    
-		    <TextView
-		        android:id="@+id/cardIdHead"
-		        android:layout_width="0dp"
-		        android:layout_weight="0.7"
-		        android:layout_height="wrap_content"
-		        android:text="@string/data_id"
-		        android:layout_gravity="left"
-		        android:background="#88FF0000"/>
-		    <TextView
-		        android:id="@+id/cardIdOut"
-		        android:textIsSelectable="false"
-		        android:layout_width="0dp"
-		        android:layout_weight="1.3"
-		        android:layout_height="wrap_content"
-		        android:layout_gravity="right" 
-		        android:background="#8800FF00"/>
+			<LinearLayout
+			    android:id="@+id/linearLayoutCardId"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal" >
+			    
+			    <TextView
+			        android:id="@+id/cardIdHead"
+			        android:layout_width="0dp"
+			        android:layout_weight="0.7"
+			        android:layout_height="wrap_content"
+			        android:text="@string/data_id"
+			        android:layout_gravity="left"
+			        android:background="#88FF0000"
+			        android:visibility="gone" />
+			    <TextView
+			        android:id="@+id/cardIdOut"
+			        android:textIsSelectable="false"
+			        android:layout_width="0dp"
+			        android:layout_weight="1.3"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="right" 
+			        android:background="#8800FF00"
+			        android:visibility="gone" />
+			</LinearLayout>
+			
+			<LinearLayout
+			    android:id="@+id/linearLayoutName"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal" >
+			    
+			    <TextView
+			        android:id="@+id/nameHead"
+			        android:layout_width="0dp"
+			        android:layout_weight="0.7"
+			        android:layout_height="wrap_content"
+			        android:text="@string/data_name"
+			        android:layout_gravity="left"
+			        android:background="#88FF0000"/>
+			    <TextView
+			        android:id="@+id/nameOut"
+			        android:textIsSelectable="false"
+			        android:layout_width="0dp"
+			        android:layout_weight="1.3"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="right" 
+			        android:background="#8800FF00"/>
+			
+			</LinearLayout>
+			
+			<RelativeLayout
+			    android:id="@+id/relativeLayoutImage"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content" >
+			
+			    <ImageView
+			        android:id="@+id/cardImage"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_centerInParent="true"
+			        android:contentDescription="@string/data_cardimage_desc" />
+			
+			    <ProgressBar
+			        android:id="@+id/cardImageProgress"
+			        style="?android:attr/progressBarStyleLarge"
+			        android:layout_width="wrap_content"
+			        android:layout_centerInParent="true"
+			        android:layout_height="wrap_content" />
+			
+			    <TextView
+			        android:id="@+id/cardImageMessage"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_alignBottom="@+id/cardImage"
+			        android:layout_centerHorizontal="true"
+			        android:visibility="gone"
+			        android:text="@string/data_cardimage_error" />
+			
+			</RelativeLayout>
+			
+			<LinearLayout
+			    android:id="@+id/linearLayoutCost"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal" >
+			    
+			    <TextView
+			        android:id="@+id/costHead"
+			        android:layout_width="0dp"
+			        android:layout_weight="0.7"
+			        android:layout_height="wrap_content"
+			        android:text="@string/data_cost"
+			        android:layout_gravity="left"
+			        android:background="#88FF0000"/>
+			    <TextView
+			        android:id="@+id/costOut"
+			        android:textIsSelectable="false"
+			        android:layout_width="0dp"
+			        android:layout_weight="1.3"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="right" 
+			        android:background="#8800FF00"/>
+			
+			</LinearLayout>
+			
+			<LinearLayout
+			    android:id="@+id/linearLayoutConvertedCost"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal" >
+			    
+			    <TextView
+			        android:id="@+id/convertedCostHead"
+			        android:layout_width="0dp"
+			        android:layout_weight="0.7"
+			        android:layout_height="wrap_content"
+			        android:text="@string/data_convertedcost"
+			        android:layout_gravity="left"
+			        android:background="#88FF0000"/>
+			    <TextView
+			        android:id="@+id/convertedCostOut"
+			        android:textIsSelectable="false"
+			        android:layout_width="0dp"
+			        android:layout_weight="1.3"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="right" 
+			        android:background="#8800FF00"/>
+			
+			</LinearLayout>
+			
+			<LinearLayout
+			    android:id="@+id/linearLayoutTypes"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal" >
+			    
+			    <TextView
+			        android:id="@+id/typesHead"
+			        android:layout_width="0dp"
+			        android:layout_weight="0.7"
+			        android:layout_height="wrap_content"
+			        android:text="@string/data_types"
+			        android:layout_gravity="left"
+			        android:background="#88FF0000"/>
+			    <TextView
+			        android:id="@+id/typesOut"
+			        android:textIsSelectable="false"
+			        android:layout_width="0dp"
+			        android:layout_weight="1.3"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="right" 
+			        android:background="#8800FF00"/>
+			
+			</LinearLayout>
+			
+			<LinearLayout
+			    android:id="@+id/linearLayoutRules"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal" >
+			    
+			    <TextView
+			        android:id="@+id/rulesHead"
+			        android:layout_width="0dp"
+			        android:layout_weight="0.7"
+			        android:layout_height="wrap_content"
+			        android:text="@string/data_rules"
+			        android:layout_gravity="left"
+			        android:background="#88FF0000"/>
+			    <TextView
+			        android:id="@+id/rulesOut"
+			        android:textIsSelectable="false"
+			        android:layout_width="0dp"
+			        android:layout_weight="1.3"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="right" 
+			        android:background="#8800FF00"/>
+			
+			</LinearLayout>
+			
+			<LinearLayout
+			    android:id="@+id/linearLayoutFlavor"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal" >
+			    
+			    <TextView
+			        android:id="@+id/flavorHead"
+			        android:layout_width="0dp"
+			        android:layout_weight="0.7"
+			        android:layout_height="wrap_content"
+			        android:text="@string/data_flavor"
+			        android:layout_gravity="left"
+			        android:background="#88FF0000"/>
+			    <TextView
+			        android:id="@+id/flavorOut"
+			        android:textIsSelectable="false"
+			        android:layout_width="0dp"
+			        android:layout_weight="1.3"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="right" 
+			        android:background="#8800FF00"/>
+			
+			</LinearLayout>
+			
+			<LinearLayout
+			    android:id="@+id/linearLayoutRowArtist"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal" >
+			    
+			    <TextView
+			        android:id="@+id/artistHead"
+			        android:layout_width="0dp"
+			        android:layout_weight="0.7"
+			        android:layout_height="wrap_content"
+			        android:text="@string/data_artist"
+			        android:layout_gravity="left"
+			        android:background="#88FF0000"/>
+			    <TextView
+			        android:id="@+id/artistOut"
+			        android:textIsSelectable="false"
+			        android:layout_width="0dp"
+			        android:layout_weight="1.3"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="right" 
+			        android:background="#8800FF00"/>
+			
+			</LinearLayout>
+			
+			<LinearLayout
+			    android:id="@+id/linearLayoutRowPower"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal" >
+			    
+			    <TextView
+			        android:id="@+id/powerHead"
+			        android:layout_width="0dp"
+			        android:layout_weight="0.7"
+			        android:layout_height="wrap_content"
+			        android:text="@string/data_power"
+			        android:layout_gravity="left"
+			        android:background="#88FF0000"/>
+			    <TextView
+			        android:id="@+id/powerOut"
+			        android:textIsSelectable="false"
+			        android:layout_width="0dp"
+			        android:layout_weight="1.3"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="right" 
+			        android:background="#8800FF00"/>
+			
+			</LinearLayout>
+			
+			<LinearLayout
+			    android:id="@+id/linearLayoutRowToughness"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal" >
+			    
+			    <TextView
+			        android:id="@+id/toughnessHead"
+			        android:layout_width="0dp"
+			        android:layout_weight="0.7"
+			        android:layout_height="wrap_content"
+			        android:text="@string/data_toughness"
+			        android:layout_gravity="left"
+			        android:background="#88FF0000"/>
+			    <TextView
+			        android:id="@+id/toughnessOut"
+			        android:textIsSelectable="false"
+			        android:layout_width="0dp"
+			        android:layout_weight="1.3"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="right" 
+			        android:background="#8800FF00"/>
+			
+			</LinearLayout>
+			
+			<LinearLayout
+			    android:id="@+id/linearLayoutRowLoyalty"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal" >
+			    
+			    <TextView
+			        android:id="@+id/loyaltyHead"
+			        android:layout_width="0dp"
+			        android:layout_weight="0.7"
+			        android:layout_height="wrap_content"
+			        android:text="@string/data_loyalty"
+			        android:layout_gravity="left"
+			        android:background="#88FF0000"/>
+			    <TextView
+			        android:id="@+id/loyaltyOut"
+			        android:textIsSelectable="false"
+			        android:layout_width="0dp"
+			        android:layout_weight="1.3"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="right" 
+			        android:background="#8800FF00"/>
+			
+			</LinearLayout>
+			
+			<LinearLayout
+			    android:id="@+id/linearLayoutExpansion"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal" >
+			    
+			    <TextView
+			        android:id="@+id/expansionHead"
+			        android:layout_width="0dp"
+			        android:layout_weight="0.7"
+			        android:layout_height="wrap_content"
+			        android:text="@string/data_expansion"
+			        android:layout_gravity="left"
+			        android:background="#88FF0000"/>
+			    <TextView
+			        android:id="@+id/expansionOut"
+			        android:textIsSelectable="false"
+			        android:layout_width="0dp"
+			        android:layout_weight="1.3"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="right" 
+			        android:background="#8800FF00"/>
+			
+			</LinearLayout>
+			
+			<LinearLayout
+			    android:id="@+id/linearLayoutRarity"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal" >
+			    
+			    <TextView
+			        android:id="@+id/rarityHead"
+			        android:layout_width="0dp"
+			        android:layout_weight="0.7"
+			        android:layout_height="wrap_content"
+			        android:text="@string/data_rarity"
+			        android:layout_gravity="left"
+			        android:background="#88FF0000"/>
+			    <TextView
+			        android:id="@+id/rarityOut"
+			        android:textIsSelectable="false"
+			        android:layout_width="0dp"
+			        android:layout_weight="1.3"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="right" 
+			        android:background="#8800FF00"/>
+			
+			</LinearLayout>
+			
+			<LinearLayout
+			    android:id="@+id/linearLayoutNumber"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal" >
+			    
+			    <TextView
+			        android:id="@+id/numberHead"
+			        android:layout_width="0dp"
+			        android:layout_weight="0.7"
+			        android:layout_height="wrap_content"
+			        android:text="@string/data_collectorsnumber"
+			        android:layout_gravity="left"
+			        android:background="#88FF0000"/>
+			    <TextView
+			        android:id="@+id/numberOut"
+			        android:textIsSelectable="false"
+			        android:layout_width="0dp"
+			        android:layout_weight="1.3"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="right" 
+			        android:background="#8800FF00"/>
+			
+			</LinearLayout>
+			
+			<LinearLayout
+			    android:id="@+id/linearLayoutCardRules"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal" >
+			    
+			    <TextView
+			        android:id="@+id/cardRulesHead"
+			        android:layout_width="0dp"
+			        android:layout_weight="0.7"
+			        android:layout_height="wrap_content"
+			        android:text="@string/data_cardrules"
+			        android:layout_gravity="left"
+			        android:background="#88FF0000"/>
+			    <TextView
+			        android:id="@+id/cardRulesOut"
+			        android:textIsSelectable="false"
+			        android:layout_width="0dp"
+			        android:layout_weight="1.3"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="right" 
+			        android:background="#8800FF00"/>
+			
+			</LinearLayout>
 		</LinearLayout>
-		
-		<LinearLayout
-		    android:id="@+id/linearLayoutName"
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content"
-		    android:orientation="horizontal" >
-		    
-		    <TextView
-		        android:id="@+id/nameHead"
-		        android:layout_width="0dp"
-		        android:layout_weight="0.7"
-		        android:layout_height="wrap_content"
-		        android:text="@string/data_name"
-		        android:layout_gravity="left"
-		        android:background="#88FF0000"/>
-		    <TextView
-		        android:id="@+id/nameOut"
-		        android:textIsSelectable="false"
-		        android:layout_width="0dp"
-		        android:layout_weight="1.3"
-		        android:layout_height="wrap_content"
-		        android:layout_gravity="right" 
-		        android:background="#8800FF00"/>
-		
-		</LinearLayout>
-		
-		<RelativeLayout
-		    android:id="@+id/relativeLayoutImage"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content" >
-		
-		    <ImageView
-		        android:id="@+id/cardImage"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_centerInParent="true"
-		        android:contentDescription="@string/data_cardimage_desc" />
-		
-		    <ProgressBar
-		        android:id="@+id/cardImageProgress"
-		        style="?android:attr/progressBarStyleLarge"
-		        android:layout_width="wrap_content"
-		        android:layout_centerInParent="true"
-		        android:layout_height="wrap_content" />
-		
-		    <TextView
-		        android:id="@+id/cardImageMessage"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_alignBottom="@+id/cardImage"
-		        android:layout_centerHorizontal="true"
-		        android:visibility="gone"
-		        android:text="@string/data_cardimage_error" />
-		
-		</RelativeLayout>
-		
-		<LinearLayout
-		    android:id="@+id/linearLayoutCost"
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content"
-		    android:orientation="horizontal" >
-		    
-		    <TextView
-		        android:id="@+id/costHead"
-		        android:layout_width="0dp"
-		        android:layout_weight="0.7"
-		        android:layout_height="wrap_content"
-		        android:text="@string/data_cost"
-		        android:layout_gravity="left"
-		        android:background="#88FF0000"/>
-		    <TextView
-		        android:id="@+id/costOut"
-		        android:textIsSelectable="false"
-		        android:layout_width="0dp"
-		        android:layout_weight="1.3"
-		        android:layout_height="wrap_content"
-		        android:layout_gravity="right" 
-		        android:background="#8800FF00"/>
-		
-		</LinearLayout>
-		
-		<LinearLayout
-		    android:id="@+id/linearLayoutConvertedCost"
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content"
-		    android:orientation="horizontal" >
-		    
-		    <TextView
-		        android:id="@+id/convertedCostHead"
-		        android:layout_width="0dp"
-		        android:layout_weight="0.7"
-		        android:layout_height="wrap_content"
-		        android:text="@string/data_convertedcost"
-		        android:layout_gravity="left"
-		        android:background="#88FF0000"/>
-		    <TextView
-		        android:id="@+id/convertedCostOut"
-		        android:textIsSelectable="false"
-		        android:layout_width="0dp"
-		        android:layout_weight="1.3"
-		        android:layout_height="wrap_content"
-		        android:layout_gravity="right" 
-		        android:background="#8800FF00"/>
-		
-		</LinearLayout>
-		
-		<LinearLayout
-		    android:id="@+id/linearLayoutTypes"
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content"
-		    android:orientation="horizontal" >
-		    
-		    <TextView
-		        android:id="@+id/typesHead"
-		        android:layout_width="0dp"
-		        android:layout_weight="0.7"
-		        android:layout_height="wrap_content"
-		        android:text="@string/data_types"
-		        android:layout_gravity="left"
-		        android:background="#88FF0000"/>
-		    <TextView
-		        android:id="@+id/typesOut"
-		        android:textIsSelectable="false"
-		        android:layout_width="0dp"
-		        android:layout_weight="1.3"
-		        android:layout_height="wrap_content"
-		        android:layout_gravity="right" 
-		        android:background="#8800FF00"/>
-		
-		</LinearLayout>
-		
-		<LinearLayout
-		    android:id="@+id/linearLayoutRules"
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content"
-		    android:orientation="horizontal" >
-		    
-		    <TextView
-		        android:id="@+id/rulesHead"
-		        android:layout_width="0dp"
-		        android:layout_weight="0.7"
-		        android:layout_height="wrap_content"
-		        android:text="@string/data_rules"
-		        android:layout_gravity="left"
-		        android:background="#88FF0000"/>
-		    <TextView
-		        android:id="@+id/rulesOut"
-		        android:textIsSelectable="false"
-		        android:layout_width="0dp"
-		        android:layout_weight="1.3"
-		        android:layout_height="wrap_content"
-		        android:layout_gravity="right" 
-		        android:background="#8800FF00"/>
-		
-		</LinearLayout>
-		
-		<LinearLayout
-		    android:id="@+id/linearLayoutFlavor"
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content"
-		    android:orientation="horizontal" >
-		    
-		    <TextView
-		        android:id="@+id/flavorHead"
-		        android:layout_width="0dp"
-		        android:layout_weight="0.7"
-		        android:layout_height="wrap_content"
-		        android:text="@string/data_flavor"
-		        android:layout_gravity="left"
-		        android:background="#88FF0000"/>
-		    <TextView
-		        android:id="@+id/flavorOut"
-		        android:textIsSelectable="false"
-		        android:layout_width="0dp"
-		        android:layout_weight="1.3"
-		        android:layout_height="wrap_content"
-		        android:layout_gravity="right" 
-		        android:background="#8800FF00"/>
-		
-		</LinearLayout>
-		
-		<LinearLayout
-		    android:id="@+id/linearLayoutRowArtist"
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content"
-		    android:orientation="horizontal" >
-		    
-		    <TextView
-		        android:id="@+id/artistHead"
-		        android:layout_width="0dp"
-		        android:layout_weight="0.7"
-		        android:layout_height="wrap_content"
-		        android:text="@string/data_artist"
-		        android:layout_gravity="left"
-		        android:background="#88FF0000"/>
-		    <TextView
-		        android:id="@+id/artistOut"
-		        android:textIsSelectable="false"
-		        android:layout_width="0dp"
-		        android:layout_weight="1.3"
-		        android:layout_height="wrap_content"
-		        android:layout_gravity="right" 
-		        android:background="#8800FF00"/>
-		
-		</LinearLayout>
-		
-		<LinearLayout
-		    android:id="@+id/linearLayoutRowPower"
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content"
-		    android:orientation="horizontal" >
-		    
-		    <TextView
-		        android:id="@+id/powerHead"
-		        android:layout_width="0dp"
-		        android:layout_weight="0.7"
-		        android:layout_height="wrap_content"
-		        android:text="@string/data_power"
-		        android:layout_gravity="left"
-		        android:background="#88FF0000"/>
-		    <TextView
-		        android:id="@+id/powerOut"
-		        android:textIsSelectable="false"
-		        android:layout_width="0dp"
-		        android:layout_weight="1.3"
-		        android:layout_height="wrap_content"
-		        android:layout_gravity="right" 
-		        android:background="#8800FF00"/>
-		
-		</LinearLayout>
-		
-		<LinearLayout
-		    android:id="@+id/linearLayoutRowToughness"
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content"
-		    android:orientation="horizontal" >
-		    
-		    <TextView
-		        android:id="@+id/toughnessHead"
-		        android:layout_width="0dp"
-		        android:layout_weight="0.7"
-		        android:layout_height="wrap_content"
-		        android:text="@string/data_toughness"
-		        android:layout_gravity="left"
-		        android:background="#88FF0000"/>
-		    <TextView
-		        android:id="@+id/toughnessOut"
-		        android:textIsSelectable="false"
-		        android:layout_width="0dp"
-		        android:layout_weight="1.3"
-		        android:layout_height="wrap_content"
-		        android:layout_gravity="right" 
-		        android:background="#8800FF00"/>
-		
-		</LinearLayout>
-		
-		<LinearLayout
-		    android:id="@+id/linearLayoutRowLoyalty"
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content"
-		    android:orientation="horizontal" >
-		    
-		    <TextView
-		        android:id="@+id/loyaltyHead"
-		        android:layout_width="0dp"
-		        android:layout_weight="0.7"
-		        android:layout_height="wrap_content"
-		        android:text="@string/data_loyalty"
-		        android:layout_gravity="left"
-		        android:background="#88FF0000"/>
-		    <TextView
-		        android:id="@+id/loyaltyOut"
-		        android:textIsSelectable="false"
-		        android:layout_width="0dp"
-		        android:layout_weight="1.3"
-		        android:layout_height="wrap_content"
-		        android:layout_gravity="right" 
-		        android:background="#8800FF00"/>
-		
-		</LinearLayout>
-		
-		<LinearLayout
-		    android:id="@+id/linearLayoutExpansion"
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content"
-		    android:orientation="horizontal" >
-		    
-		    <TextView
-		        android:id="@+id/expansionHead"
-		        android:layout_width="0dp"
-		        android:layout_weight="0.7"
-		        android:layout_height="wrap_content"
-		        android:text="@string/data_expansion"
-		        android:layout_gravity="left"
-		        android:background="#88FF0000"/>
-		    <TextView
-		        android:id="@+id/expansionOut"
-		        android:textIsSelectable="false"
-		        android:layout_width="0dp"
-		        android:layout_weight="1.3"
-		        android:layout_height="wrap_content"
-		        android:layout_gravity="right" 
-		        android:background="#8800FF00"/>
-		
-		</LinearLayout>
-		
-		<LinearLayout
-		    android:id="@+id/linearLayoutRarity"
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content"
-		    android:orientation="horizontal" >
-		    
-		    <TextView
-		        android:id="@+id/rarityHead"
-		        android:layout_width="0dp"
-		        android:layout_weight="0.7"
-		        android:layout_height="wrap_content"
-		        android:text="@string/data_rarity"
-		        android:layout_gravity="left"
-		        android:background="#88FF0000"/>
-		    <TextView
-		        android:id="@+id/rarityOut"
-		        android:textIsSelectable="false"
-		        android:layout_width="0dp"
-		        android:layout_weight="1.3"
-		        android:layout_height="wrap_content"
-		        android:layout_gravity="right" 
-		        android:background="#8800FF00"/>
-		
-		</LinearLayout>
-		
-		<LinearLayout
-		    android:id="@+id/linearLayoutNumber"
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content"
-		    android:orientation="horizontal" >
-		    
-		    <TextView
-		        android:id="@+id/numberHead"
-		        android:layout_width="0dp"
-		        android:layout_weight="0.7"
-		        android:layout_height="wrap_content"
-		        android:text="@string/data_collectorsnumber"
-		        android:layout_gravity="left"
-		        android:background="#88FF0000"/>
-		    <TextView
-		        android:id="@+id/numberOut"
-		        android:textIsSelectable="false"
-		        android:layout_width="0dp"
-		        android:layout_weight="1.3"
-		        android:layout_height="wrap_content"
-		        android:layout_gravity="right" 
-		        android:background="#8800FF00"/>
-		
-		</LinearLayout>
-		
-		<LinearLayout
-		    android:id="@+id/linearLayoutCardRules"
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content"
-		    android:orientation="horizontal" >
-		    
-		    <TextView
-		        android:id="@+id/cardRulesHead"
-		        android:layout_width="0dp"
-		        android:layout_weight="0.7"
-		        android:layout_height="wrap_content"
-		        android:text="@string/data_cardrules"
-		        android:layout_gravity="left"
-		        android:background="#88FF0000"/>
-		    <TextView
-		        android:id="@+id/cardRulesOut"
-		        android:textIsSelectable="false"
-		        android:layout_width="0dp"
-		        android:layout_weight="1.3"
-		        android:layout_height="wrap_content"
-		        android:layout_gravity="right" 
-		        android:background="#8800FF00"/>
-		
-		</LinearLayout>
-	</LinearLayout>
-</ScrollView>
+	</ScrollView>
+</RelativeLayout>
