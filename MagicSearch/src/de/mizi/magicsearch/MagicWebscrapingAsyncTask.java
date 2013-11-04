@@ -8,6 +8,8 @@ import java.util.regex.Pattern;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
+import org.jsoup.nodes.TextNode;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.table.TableUtils;
@@ -76,10 +78,8 @@ public class MagicWebscrapingAsyncTask extends AsyncTask<String, String, Boolean
 	
 					MagicCardData data = new MagicCardData();
 					data.name = name.text();
-					data.rulesText = rules.text();
 					data.flavorText = flavor.text();
 					data.artist = artist.text().replaceFirst("Illus. ", "");
-					data.cardRules = (cardrules == null ? "-" : cardrules.text());
 					data.imageUrl = (imageUrl == null ? "" : imageUrl.attr("src"));
 					data.types = "-";
 					data.power = "-";
@@ -90,6 +90,50 @@ public class MagicWebscrapingAsyncTask extends AsyncTask<String, String, Boolean
 					data.number = "-";
 					data.expansion = "-";
 					data.rarity = MagicCardRarity.NONE;
+					
+					// Set rulestext with newlines
+					StringBuilder rulesStr = new StringBuilder();
+					for(Node node: rules.childNode(0).childNodes())
+					{
+						if(node instanceof TextNode)
+						{
+							if(!rulesStr.toString().equals(""))
+							{
+								rulesStr.append("\n\n");
+							}
+							rulesStr.append(node.toString());
+						}
+					}
+					data.rulesText = rulesStr.toString();
+					
+					// Set card rules faq with newlines
+					if(cardrules == null)
+					{
+						data.cardRules = "-";
+					}
+					else {
+						StringBuilder cardRulesStr = new StringBuilder();
+						for(Node child: cardrules.children())
+						{
+							for(Node node: child.childNodes())
+							{
+								if(node instanceof TextNode)
+								{
+									// text
+									cardRulesStr.append(node.toString());
+								}
+								else {
+									// date
+									if(!cardRulesStr.toString().equals(""))
+									{
+										cardRulesStr.append("\n");
+									}
+									cardRulesStr.append(node.childNode(0).toString());
+								}
+							}
+						}
+						data.cardRules = cardRulesStr.toString();
+					}
 					
 					text = typeLine.text();
 					matcher = typePattern.matcher(text);
