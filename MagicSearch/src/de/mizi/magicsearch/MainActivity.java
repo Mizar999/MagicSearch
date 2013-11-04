@@ -1,13 +1,9 @@
 package de.mizi.magicsearch;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
-import com.j256.ormlite.stmt.QueryBuilder;
 
-import de.mizi.magicsearch.data.MagicCardData;
 import de.mizi.magicsearch.data.MagicDatabaseHelper;
 import de.mizi.magicsearch.output.FragmentMainActivity;
 
@@ -19,7 +15,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class MainActivity extends OrmLiteBaseActivity<MagicDatabaseHelper>
 {
@@ -35,35 +30,39 @@ public class MainActivity extends OrmLiteBaseActivity<MagicDatabaseHelper>
 			@Override
 			public void onClick(View v)
 			{
-				try
-				{
+//				try
+//				{
 					EditText edit = (EditText)findViewById(R.id.main_edit);
-					String cardname = edit.getText().toString();
+					String nameToSearch = edit.getText().toString();
 					
-					List<MagicCardData> tmp;
-					if(cardname.equals("")) {
-						tmp = getHelper().getMagicDao().queryForAll();
-					} else {
-						QueryBuilder<MagicCardData, Integer> builder = getHelper().getMagicDao().queryBuilder();
-						builder.where().like(MagicCardData.CARDNAME_FIELD_NAME, "%" + cardname + "%");
-						tmp = getHelper().getMagicDao().query( builder.prepare() );
-					}
-					ArrayList<MagicCardData> data = new ArrayList<MagicCardData>(tmp);
+					Intent intent = new Intent(MainActivity.this, SearchResultListActivity.class);
+					intent.putExtra(SearchResultListActivity.KEY_NAME_TO_SEARCH, nameToSearch);
+					startActivity(intent);
 					
-					if(data.size() > 0)
-					{
-						Intent intent = new Intent(MainActivity.this, SearchResultListActivity.class);
-						intent.putParcelableArrayListExtra(SearchResultListActivity.KEY_DATA, data);
-						startActivity(intent);
-					}
-					else {
-						Resources res = MainActivity.this.getResources();
-						Toast.makeText(MainActivity.this, res.getString(R.string.no_search_result), Toast.LENGTH_LONG).show();
-					}
-				}
-				catch (SQLException e) {
-					e.printStackTrace();
-				}
+//					List<MagicCardData> tmp;
+//					if(cardname.equals("")) {
+//						tmp = getHelper().getMagicDao().queryForAll();
+//					} else {
+//						QueryBuilder<MagicCardData, Integer> builder = getHelper().getMagicDao().queryBuilder();
+//						builder.where().like(MagicCardData.CARDNAME_FIELD_NAME, "%" + cardname + "%");
+//						tmp = getHelper().getMagicDao().query( builder.prepare() );
+//					}
+//					ArrayList<MagicCardData> data = new ArrayList<MagicCardData>(tmp);
+//					
+//					if(data.size() > 0)
+//					{
+//						Intent intent = new Intent(MainActivity.this, SearchResultListActivity.class);
+//						intent.putParcelableArrayListExtra(SearchResultListActivity.KEY_NAME_TO_SEARCH, data);
+//						startActivity(intent);
+//					}
+//					else {
+//						Resources res = MainActivity.this.getResources();
+//						Toast.makeText(MainActivity.this, res.getString(R.string.no_search_result), Toast.LENGTH_LONG).show();
+//					}
+//				}
+//				catch (SQLException e) {
+//					e.printStackTrace();
+//				}
 			}
 		});
 		
@@ -72,19 +71,8 @@ public class MainActivity extends OrmLiteBaseActivity<MagicDatabaseHelper>
 			@Override
 			public void onClick(View v)
 			{
-				try
-				{
-					List<MagicCardData> tmp = getHelper().getMagicDao().queryForAll();
-					ArrayList<MagicCardData> data = new ArrayList<MagicCardData>(tmp);
-					
-					Intent intent = new Intent(MainActivity.this, FragmentMainActivity.class);
-					intent.putParcelableArrayListExtra(FragmentMainActivity.KEY_DATA, data);
-					intent.putExtra(FragmentMainActivity.KEY_START_ITEM, 0);
-					startActivity(intent);
-				}
-				catch (SQLException e) {
-					e.printStackTrace();
-				}
+				Intent intent = new Intent(MainActivity.this, FragmentMainActivity.class);
+				startActivity(intent);
 			}
 		});
 		
