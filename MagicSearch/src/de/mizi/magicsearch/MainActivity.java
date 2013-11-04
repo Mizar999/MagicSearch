@@ -7,18 +7,53 @@ import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import de.mizi.magicsearch.data.MagicDatabaseHelper;
 import de.mizi.magicsearch.output.FragmentMainActivity;
 
-import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends OrmLiteBaseActivity<MagicDatabaseHelper>
 {
-
+	public static final String KEY_ENABLED = "enabled";
+	public static final String KEY_TEXT = "text";
+	
+	private BroadcastReceiver receiver = new BroadcastReceiver()
+	{
+		@Override
+		public void onReceive(Context context, Intent intent)
+		{
+			Bundle bundle = intent.getExtras();
+			if(bundle != null)
+			{
+				Button webscraping = (Button)MainActivity.this.findViewById(R.id.main_button_webscraping);
+				
+				int result = bundle.getInt(MagicWebscrapingService.KEY_RESULT);
+				if(result == MagicWebscrapingService.RESULT_UPDATE)
+				{
+					webscraping.setText( bundle.getString(MagicWebscrapingService.KEY_UPDATE_MESSAGE) );
+				}
+				else {
+					webscraping.setEnabled(true);
+					webscraping.setText(context.getResources().getString(R.string.main_button_webscraping));
+					
+					if(result == MagicWebscrapingService.RESULT_OK)
+					{
+						Toast.makeText(context, context.getResources().getString(R.string.webscraping_success), Toast.LENGTH_LONG).show();
+					}
+					else {
+						Toast.makeText(context, context.getResources().getString(R.string.webscraping_failure), Toast.LENGTH_LONG).show();
+					}
+				}
+			}
+		}
+	};
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -30,39 +65,12 @@ public class MainActivity extends OrmLiteBaseActivity<MagicDatabaseHelper>
 			@Override
 			public void onClick(View v)
 			{
-//				try
-//				{
-					EditText edit = (EditText)findViewById(R.id.main_edit);
-					String nameToSearch = edit.getText().toString();
-					
-					Intent intent = new Intent(MainActivity.this, SearchResultListActivity.class);
-					intent.putExtra(SearchResultListActivity.KEY_NAME_TO_SEARCH, nameToSearch);
-					startActivity(intent);
-					
-//					List<MagicCardData> tmp;
-//					if(cardname.equals("")) {
-//						tmp = getHelper().getMagicDao().queryForAll();
-//					} else {
-//						QueryBuilder<MagicCardData, Integer> builder = getHelper().getMagicDao().queryBuilder();
-//						builder.where().like(MagicCardData.CARDNAME_FIELD_NAME, "%" + cardname + "%");
-//						tmp = getHelper().getMagicDao().query( builder.prepare() );
-//					}
-//					ArrayList<MagicCardData> data = new ArrayList<MagicCardData>(tmp);
-//					
-//					if(data.size() > 0)
-//					{
-//						Intent intent = new Intent(MainActivity.this, SearchResultListActivity.class);
-//						intent.putParcelableArrayListExtra(SearchResultListActivity.KEY_NAME_TO_SEARCH, data);
-//						startActivity(intent);
-//					}
-//					else {
-//						Resources res = MainActivity.this.getResources();
-//						Toast.makeText(MainActivity.this, res.getString(R.string.no_search_result), Toast.LENGTH_LONG).show();
-//					}
-//				}
-//				catch (SQLException e) {
-//					e.printStackTrace();
-//				}
+				EditText edit = (EditText)findViewById(R.id.main_edit);
+				String nameToSearch = edit.getText().toString();
+				
+				Intent intent = new Intent(MainActivity.this, SearchResultListActivity.class);
+				intent.putExtra(SearchResultListActivity.KEY_NAME_TO_SEARCH, nameToSearch);
+				startActivity(intent);
 			}
 		});
 		
@@ -89,15 +97,44 @@ public class MainActivity extends OrmLiteBaseActivity<MagicDatabaseHelper>
 			}
 		});
 	}
+	
+	@Override
+	protected void onSaveInstanceState(Bundle outState)
+	{
+		Button webscraping = (Button)MainActivity.this.findViewById(R.id.main_button_webscraping);
+		outState.putBoolean(KEY_ENABLED, webscraping.isEnabled());
+		outState.putString(KEY_TEXT, webscraping.getText().toString());
+		
+		super.onSaveInstanceState(outState);
+	}
+	
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState)
+	{
+		super.onRestoreInstanceState(savedInstanceState);
+		
+		Button webscraping = (Button)MainActivity.this.findViewById(R.id.main_button_webscraping);
+		webscraping.setEnabled( savedInstanceState.getBoolean(KEY_ENABLED) );
+		webscraping.setText( savedInstanceState.getString(KEY_TEXT) );
+	}
+	
+	@Override
+	protected void onResume()
+	{
+		super.onResume();
+		registerReceiver(receiver, new IntentFilter(MagicWebscrapingService.KEY_NOTIFICATION));
+	}
 
 	private void startWebscraping() throws SQLException
 	{
-		Resources res = getResources();
-		String status = res.getString(R.string.webscraping_status);
-		String message = res.getString(R.string.webscraping_message);
+		String[] expansions = new String[]{"rtr", "gtc", "dgm", "m14", "ths"};
+		Intent intent = new Intent(MainActivity.this, MagicWebscrapingService.class);
+		intent.putExtra(MagicWebscrapingService.KEY_EXPANSIONS, expansions);
+		startService(intent);
 		
-		ProgressDialog progress = ProgressDialog.show(this, status, message);
-		MagicWebscrapingAsyncTask scraping = new MagicWebscrapingAsyncTask(getHelper(), progress);
-		scraping.execute("rtr", "gtc", "dgm", "m14", "ths");
+		Button webscraping = (Button)MainActivity.this.findViewById(R.id.main_button_webscraping);
+		webscraping.setEnabled(false);
+		
+		registerReceiver(receiver, new IntentFilter(MagicWebscrapingService.KEY_NOTIFICATION));
 	}
 }

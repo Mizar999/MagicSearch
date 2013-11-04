@@ -11,43 +11,55 @@ import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
 
+import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.table.TableUtils;
 
 import de.mizi.magicsearch.data.MagicCardData;
 import de.mizi.magicsearch.data.MagicCardRarity;
 import de.mizi.magicsearch.data.MagicDatabaseHelper;
+import android.app.IntentService;
+import android.content.Intent;
 
-import android.app.ProgressDialog;
-import android.content.res.Resources;
-import android.os.AsyncTask;
-
-public class MagicWebscrapingAsyncTask extends AsyncTask<String, String, Boolean>
+public class MagicWebscrapingService extends IntentService
 {
+	public static final int RESULT_OK = 2;
+	public static final int RESULT_FAILURE = 4;
+	public static final int RESULT_UPDATE = 8;
+	
+	public static final String KEY_EXPANSIONS = "expansions";
+	public static final String KEY_RESULT = "result";
+	public static final String KEY_UPDATE_MESSAGE = "updateMessage";
+	public static final String KEY_NOTIFICATION = "de.mizi.magicsearch.MagicWebscrapingService";
+	
+	private static final int CARDS_TO_DOWNLOAD_BEFORE_SLEEP = 4;
+	
 	private static Pattern collectorNumberPattern = Pattern.compile("#(\\d+)");
 	private static Pattern editionRarityPattern = Pattern.compile("([^\\(]+) ?\\(([^\\)]+)\\)");
 	private static Pattern typePattern = Pattern.compile("([^\\d\\(,]+) ?(([\\d*]+)/([\\d*]+)|\\(Loyalty\\: ?(\\d+)\\))?,? ?([^\\( ]+)? ?\\(?(\\d+)?\\)?");
 	
-	private MagicDatabaseHelper helper;
+	private MagicDatabaseHelper databaseHelper;
 	private Dao<MagicCardData, Integer> dao;
-	private ProgressDialog progress;
-	private Resources resources;
 	
-	public MagicWebscrapingAsyncTask(MagicDatabaseHelper helper, ProgressDialog progress) throws SQLException
+	public MagicWebscrapingService()
 	{
-		this.helper = helper;
-		this.dao = helper.getMagicDao();
-		this.progress = progress;
-		this.resources = progress.getContext().getResources();
+		super("MagicWebscrapingService");
 	}
 	
 	@Override
-	protected Boolean doInBackground(String... expansions)
+	protected void onHandleIntent(Intent intent)
 	{
+		int result = MagicWebscrapingService.RESULT_FAILURE;
+		String[] expansions = intent.getStringArrayExtra(MagicWebscrapingService.KEY_EXPANSIONS);
+
 		try
 		{
-			publishProgress(resources.getString(R.string.webscraping_initialize));
-			TableUtils.clearTable(helper.getConnectionSource(), MagicCardData.class);
+			databaseHelper = OpenHelperManager.getHelper(this, MagicDatabaseHelper.class);
+			dao = databaseHelper.getMagicDao();
+			
+			sendStatusMessage(getResources().getString(R.string.webscraping_initialize));
+			
+			TableUtils.clearTable(databaseHelper.getConnectionSource(), MagicCardData.class);
 			
 			Document doc = null;
 			Element nextCard = null;
@@ -57,7 +69,7 @@ public class MagicWebscrapingAsyncTask extends AsyncTask<String, String, Boolean
 			
 			for(String nextExpansion: expansions)
 			{
-				publishProgress(nextExpansion);
+				sendStatusMessage(nextExpansion);
 				String url = "http://magiccards.info/" + nextExpansion + "/en/1.html";
 				doc = Jsoup.connect(url).get();
 				
@@ -167,14 +179,20 @@ public class MagicWebscrapingAsyncTask extends AsyncTask<String, String, Boolean
 					dao.create(data);
 					
 					nextCard = doc.select("body > table").get(1).select("tr:eq(0) td:eq(2) a").first();
-					if(nextCard != null) {
-						Thread.sleep(1000);
+					if(nextCard != null)
+					{
+						if(cardCounter != 0 && cardCounter % CARDS_TO_DOWNLOAD_BEFORE_SLEEP == 0)
+						{
+							Thread.sleep(1800);
+						}
 						doc = Jsoup.connect(nextCard.absUrl("href")).get();
 					}
 					
-					publishProgress(nextExpansion + " (" + ++cardCounter + ")");
+					sendStatusMessage(nextExpansion + " (" + ++cardCounter + ")");
 				}while(nextCard != null);
 			}
+			
+			result = MagicWebscrapingService.RESULT_OK;
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
@@ -185,13 +203,24 @@ public class MagicWebscrapingAsyncTask extends AsyncTask<String, String, Boolean
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-		progress.dismiss();
-		return true;
+		finally {
+			if(databaseHelper != null)
+			{
+				OpenHelperManager.releaseHelper();
+				databaseHelper = null;
+			}
+		}
+		
+		Intent resultIntent = new Intent(MagicWebscrapingService.KEY_NOTIFICATION);
+		resultIntent.putExtra(MagicWebscrapingService.KEY_RESULT, result);
+	    sendBroadcast(resultIntent);
 	}
 	
-	@Override
-	protected void onProgressUpdate(String... values)
+	private void sendStatusMessage(String message)
 	{
-		progress.setTitle(resources.getString(R.string.webscraping_progress) + " " + values[0]);
+		Intent intent = new Intent(MagicWebscrapingService.KEY_NOTIFICATION);
+		intent.putExtra(MagicWebscrapingService.KEY_RESULT, MagicWebscrapingService.RESULT_UPDATE);
+		intent.putExtra(MagicWebscrapingService.KEY_UPDATE_MESSAGE, message);
+		sendBroadcast(intent);
 	}
 }

@@ -27,6 +27,9 @@
         </activity>
         <activity android:name=".output.FragmentMainActivity"></activity>
         <activity android:name="SearchResultListActivity"></activity>
+        
+        <service android:name="de.mizi.magicsearch.MagicWebscrapingService" >
+        </service>
     </application>
 	
 </manifest>

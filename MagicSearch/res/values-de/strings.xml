@@ -28,6 +28,8 @@
     <string name="main_button_webscraping">Sammle Daten</string>
     <string name="main_edit_hint">Kartenname</string>
     <string name="no_search_result">Es wurden keine Karten gefunden.</string>
+    <string name="webscraping_success">MagicSearch: Download erfolgreich</string>
+    <string name="webscraping_failure">MagicSearch: Download fehlgeschlagen</string>
     
     
 
