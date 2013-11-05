@@ -28,7 +28,7 @@ public class MagicDatabaseHelper extends OrmLiteSqliteOpenHelper
 	private static final int DATABASE_VERSION = 6;
 	
 	/**
-	 * The cached dao object, that will be returned by thsi class.
+	 * The cached dao object, that will be returned by this class.
 	 */
 	private Dao<MagicCardData, Integer> magicDao = null;
 	

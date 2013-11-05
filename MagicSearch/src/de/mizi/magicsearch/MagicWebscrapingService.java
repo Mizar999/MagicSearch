@@ -21,26 +21,71 @@ import de.mizi.magicsearch.data.MagicDatabaseHelper;
 import android.app.IntentService;
 import android.content.Intent;
 
+/**
+ * This service downloads all the carddata.
+ */
 public class MagicWebscrapingService extends IntentService
 {
+	/**
+	 * Indicates that download was successful.
+	 */
 	public static final int RESULT_OK = 2;
+	/**
+	 * Indicates that there was an error while downloading.
+	 */
 	public static final int RESULT_FAILURE = 4;
+	/**
+	 * Indicates that there is a new status update while downloading.
+	 */
 	public static final int RESULT_UPDATE = 8;
 	
+	/**
+	 * The key for the bundle to lookup the expansions to download.
+	 */
 	public static final String KEY_EXPANSIONS = "expansions";
+	/**
+	 * The key for the bundle to lookup the result of the download.
+	 */
 	public static final String KEY_RESULT = "result";
+	/**
+	 * The key for the bundle to lookup the status update message.
+	 */
 	public static final String KEY_UPDATE_MESSAGE = "updateMessage";
+	/**
+	 * The key for the bundle to lookup the intent filter string.
+	 */
 	public static final String KEY_NOTIFICATION = "de.mizi.magicsearch.MagicWebscrapingService";
 	
+	/**
+	 * How many cards shall be downloaded before there will be a pause of some seconds.
+	 */
 	private static final int CARDS_TO_DOWNLOAD_BEFORE_SLEEP = 4;
 	
+	/**
+	 * The regex pattern for the collectorsnumber.
+	 */
 	private static Pattern collectorNumberPattern = Pattern.compile("#(\\d+)");
+	/**
+	 * The regex pattern for the expansion and rarity.
+	 */
 	private static Pattern editionRarityPattern = Pattern.compile("([^\\(]+) ?\\(([^\\)]+)\\)");
+	/**
+	 * The regex pattern for the typeline.
+	 */
 	private static Pattern typePattern = Pattern.compile("([^\\d\\(,]+) ?(([\\d*]+)/([\\d*]+)|\\(Loyalty\\: ?(\\d+)\\))?,? ?([^\\( ]+)? ?\\(?(\\d+)?\\)?");
 	
+	/**
+	 * The cached database helper object.
+	 */
 	private MagicDatabaseHelper databaseHelper;
+	/**
+	 * The dao object, that allows access to the carddate table.
+	 */
 	private Dao<MagicCardData, Integer> dao;
 	
+	/**
+	 * Creates the service.
+	 */
 	public MagicWebscrapingService()
 	{
 		super("MagicWebscrapingService");
@@ -216,6 +261,10 @@ public class MagicWebscrapingService extends IntentService
 	    sendBroadcast(resultIntent);
 	}
 	
+	/**
+	 * This method sends a status message to all registered receivers while downloading the data.
+	 * @param message the message that shall be send
+	 */
 	private void sendStatusMessage(String message)
 	{
 		Intent intent = new Intent(MagicWebscrapingService.KEY_NOTIFICATION);

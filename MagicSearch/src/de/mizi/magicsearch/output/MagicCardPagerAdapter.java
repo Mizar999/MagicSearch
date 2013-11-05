@@ -15,7 +15,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 public class MagicCardPagerAdapter extends FragmentStatePagerAdapter
 {
 	/**
-	 * All cards that shall be shoown.
+	 * All cards that shall be shown.
 	 */
 	private List<MagicCardData> data;
 	

@@ -18,11 +18,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * This is the entry point for this app.
+ */
 public class MainActivity extends OrmLiteBaseActivity<MagicDatabaseHelper>
 {
+	/**
+	 * The key for the bundle to lookup if the webscraping button shall be enabled or not.
+	 */
 	public static final String KEY_ENABLED = "enabled";
+	/**
+	 * The key for the bundle to lookup the text of the webscraping button.
+	 */
 	public static final String KEY_TEXT = "text";
 	
+	/**
+	 * This object receives all infos about the download service intent, that downloads the carddata.
+	 */
 	private BroadcastReceiver receiver = new BroadcastReceiver()
 	{
 		@Override
@@ -124,7 +136,12 @@ public class MainActivity extends OrmLiteBaseActivity<MagicDatabaseHelper>
 		super.onResume();
 		registerReceiver(receiver, new IntentFilter(MagicWebscrapingService.KEY_NOTIFICATION));
 	}
-
+	
+	/**
+	 * This method defines the magic expansions that shall be downloaded and initiates the download service.
+	 * 
+	 * @throws SQLException if the database is not reachable
+	 */
 	private void startWebscraping() throws SQLException
 	{
 		String[] expansions = new String[]{"rtr", "gtc", "dgm", "m14", "ths"};

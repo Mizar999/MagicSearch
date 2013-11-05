@@ -17,13 +17,31 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+/**
+ * 
+ */
 public class SearchResultListActivity extends OrmLiteBaseListActivity<MagicDatabaseHelper>
 {
+	/**
+	 * The key for the bundle to lookup the cardname to search for.
+	 */
 	public static final String KEY_NAME_TO_SEARCH = "nameToSearch";
 	
+	/**
+	 * The cardname to search for.
+	 */
 	private String nameToSearch;
+	/**
+	 * All cards that shall be shown in the list.
+	 */
 	private List<MagicCardData> data;
+	/**
+	 * The actual string representation of a shown card in this list.
+	 */
 	private ArrayList<String> cardValues;
+	/**
+	 * The adapter that fills the list.
+	 */
 	private ArrayAdapter<String> listAdapter;
 	
 	@Override
@@ -36,7 +54,7 @@ public class SearchResultListActivity extends OrmLiteBaseListActivity<MagicDatab
 		try {
 			if(bundle == null)
 			{
-					data = getHelper().getMagicDao().queryForAll();
+				data = getHelper().getMagicDao().queryForAll();
 			}
 			else {
 				nameToSearch = bundle.getString(SearchResultListActivity.KEY_NAME_TO_SEARCH);
