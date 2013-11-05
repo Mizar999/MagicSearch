@@ -6,50 +6,112 @@ import android.os.Parcelable;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+/**
+ * This class represents a card. It's also the only table in the database and each object is parcelable.
+ */
 @DatabaseTable(tableName = "magiccard")
 public class MagicCardData implements Parcelable
 {
+	/**
+	 * The name of the cardname column in the database
+	 */
 	public static final String CARDNAME_FIELD_NAME = "cardname";
 	
+	/**
+	 * The unique id field of a magiccard.
+	 */
 	@DatabaseField(generatedId = true)
 	public long id;
 	
+	/**
+	 * The name of a amagiccard.
+	 */
 	@DatabaseField(canBeNull = false, columnName = CARDNAME_FIELD_NAME)
 	public String name;
+	/**
+	 * The manacost of a magiccard.
+	 */
 	@DatabaseField
 	public String cost;
+	/**
+	 * The converted manacost of a magiccard.
+	 */
 	@DatabaseField
 	public String convertedCost;
+	/**
+	 * The typeline of a magiccard.
+	 */
 	@DatabaseField
 	public String types;
+	/**
+	 * The rulestext of a magiccard.
+	 */
 	@DatabaseField
 	public String rulesText;
+	/**
+	 * The flavortext of a magiccard.
+	 */
 	@DatabaseField
 	public String flavorText;
+	/**
+	 * The artistname of a magiccard.
+	 */
 	@DatabaseField
 	public String artist;
+	/**
+	 * The power value of a magiccard.
+	 */
 	@DatabaseField
 	public String power;
+	/**
+	 * The toughness value of a magiccard.
+	 */
 	@DatabaseField
 	public String toughness;
+	/**
+	 * The loyalty value of a magiccard.
+	 */
 	@DatabaseField
 	public String loyalty;
+	/**
+	 * The expansion name of a magiccard.
+	 */
 	@DatabaseField(canBeNull = false)
 	public String expansion;
+	/**
+	 * The rarity of a magiccard.
+	 */
 	@DatabaseField
 	public MagicCardRarity rarity;
+	/**
+	 * The collectorsnumber of a magiccard.
+	 */
 	@DatabaseField
 	public String number;
+	/**
+	 * The rules faq of a magiccard.
+	 */
 	@DatabaseField
 	public String cardRules;
+	/**
+	 * The image url of a magiccard.
+	 */
 	@DatabaseField
 	public String imageUrl;
 	
+	/**
+	 * The dafault constructor for creating a magiccard.
+	 */
 	public MagicCardData()
 	{
 		// needed for ORMLite
 	}
 	
+	/**
+	 * Returns a string representation of all values of a magiccard for debugging reasons.
+	 * 
+	 * @return a string representation of a magiccard
+	 */
 	@Override
 	public String toString()
 	{
@@ -59,7 +121,9 @@ public class MagicCardData implements Parcelable
 				+ rarity + ";"+ number + ";" + cardRules + ";" + imageUrl;
 	}
 	
-	// Code for Parcelable interface
+	/**
+	 * This object describes how to create a magiccard object from parcelable data and vice versa
+	 */
 	public static final Parcelable.Creator<MagicCardData> CREATOR = new Parcelable.Creator<MagicCardData>()
 	{
 		@Override
@@ -101,7 +165,9 @@ public class MagicCardData implements Parcelable
 		dest.writeString(imageUrl);
 	}
 	
-	// Constructor from parcel reads back fields in the order they were written
+	/**
+	 * This constructor creates a magiccard object from parcelable data.
+	 */
 	public MagicCardData(Parcel source)
 	{
 		id = source.readLong();
