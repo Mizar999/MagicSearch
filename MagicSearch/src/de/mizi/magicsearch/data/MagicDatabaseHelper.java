@@ -13,13 +13,30 @@ import com.j256.ormlite.table.TableUtils;
 
 import de.mizi.magicsearch.R;
 
+/**
+ * The helper class for the ORMLite framework.
+ */
 public class MagicDatabaseHelper extends OrmLiteSqliteOpenHelper
 {
+	/**
+	 * The name of the database that shall be created.
+	 */
 	private static final String DATABASE_NAME = "magicsearch.db";
+	/**
+	 * The versionnumber of the database. Increase this value to create an all new database.
+	 */
 	private static final int DATABASE_VERSION = 6;
 	
+	/**
+	 * The cached dao object, that will be returned by thsi class.
+	 */
 	private Dao<MagicCardData, Integer> magicDao = null;
 	
+	/**
+	 * The constructor, that is needed to create an object of this helperclass
+	 * 
+	 * @param context the needed context object
+	 */
 	public MagicDatabaseHelper(Context context)
 	{
 		super(context, DATABASE_NAME, null, DATABASE_VERSION, R.raw.ormlite_config);
@@ -61,6 +78,11 @@ public class MagicDatabaseHelper extends OrmLiteSqliteOpenHelper
 		magicDao = null;
 	}
 	
+	/**
+	 * This method returns a cached dao object for access to the magiccard table of the database.
+	 * 
+	 * @return a cached dao object for the magiccard table
+	 */
 	public Dao<MagicCardData, Integer> getMagicDao() throws SQLException
 	{
 		if(magicDao == null) {
