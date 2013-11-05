@@ -9,10 +9,22 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+/**
+ * This class creates each fragment with the cardinfo that is shown in the detail view of a magiccard.
+ */
 public class MagicCardPagerAdapter extends FragmentStatePagerAdapter
 {
+	/**
+	 * All cards that shall be shoown.
+	 */
 	private List<MagicCardData> data;
 	
+	/**
+	 * Creates the adapter with the given carddata that shall be shown. There will be a fragment created for each single magiccard.
+	 * 
+	 * @param manager needed for backward support
+	 * @param data all cards that shall be shown
+	 */
 	public MagicCardPagerAdapter(FragmentManager manager, List<MagicCardData> data)
 	{
 		super(manager);
