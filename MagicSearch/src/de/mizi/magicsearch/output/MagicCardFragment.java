@@ -11,9 +11,18 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+/**
+ * This class represents a visible fragment that holds all informations of one single magiccard.
+ */
 public class MagicCardFragment extends Fragment
 {
+	/**
+	 * The key for the bundle to lookup the object that represents the cardinfos of a single card
+	 */
 	public static final String KEY_DATA = "carddata";
+	/**
+	 * The key for the bundle to lookup the pagenumber of the current fragment.
+	 */
 	public static final String KEY_PAGENUMBER = "pagenumber";
 	
 	@Override
@@ -41,10 +50,11 @@ public class MagicCardFragment extends Fragment
 		
 		((TextView) rootView.findViewById(R.id.pagenumber)).setText(pagenumber);
 		
+		// Prepare all elements that are needed for the image download of a magiccard.
 		ImageView image = (ImageView) rootView.findViewById(R.id.cardImage);
 		ProgressBar progress = (ProgressBar) rootView.findViewById(R.id.cardImageProgress);
 		TextView text = (TextView) rootView.findViewById(R.id.cardImageMessage);
-		
+		// Start the image download of a magiccard in an asynchronus task.
 		MagicCardImageAsyncTask task = new MagicCardImageAsyncTask(image, progress, text);
 		task.execute(data.imageUrl);
 		
